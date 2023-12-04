@@ -23,14 +23,14 @@ public class AuthorityUsersController {
   public String showHealthPage(Model model, @PathVariable long serial_no) {
     List<PregnancyHealthReferenceEntity> heathStatusList = pregnancyHealthReferenceMapper.findHealthStatus(serial_no);
     model.addAttribute("heathStatusList", heathStatusList);
-    return "/authorityUsers/pregnancyHealthReference";
+    return "authorityUsers/pregnancyHealthReference";
   }
 
   @GetMapping(value= "/mypage/{serial_no}/authorityUsers/editPregnancyHealthReference")
   public String showEditHealthPage(Model model, @PathVariable long serial_no) {
     List<PregnancyHealthReferenceEntity> editHeathStatusList = pregnancyHealthReferenceMapper.findHealthStatus(serial_no);
     model.addAttribute("editHeathStatusList", editHeathStatusList);
-    return "/authorityUsers/editPregnancyHealthReference";
+    return "authorityUsers/editPregnancyHealthReference";
   }
 
   // 妊婦の健康状態更新処理
