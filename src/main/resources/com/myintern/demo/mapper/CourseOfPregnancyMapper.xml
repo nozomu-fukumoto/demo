@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myintern.demo.mapper.CourseOfPregnancyMapper">
+  <select id="selectCourse" resultType="com.myintern.demo.entity.CourseOfPregnancyEntity">
+    SELECT
+      *
+    FROM
+      course_of_pregnancy
+    WHERE
+      serial_no = #{serial_no}   
+  </select>
+  <insert id="addCourse" parameterType="com.myintern.demo.entity.CourseOfPregnancyEntity">
+    INSERT INTO course_of_pregnancy(
+        serial_no,
+        exam_date,
+        week_of_pregnancy_w,
+        week_of_pregnancy_d,
+        height_of_uterus,
+        circumference_of_abdomen,
+        weight_before_pregnancy,
+        weight,
+        blood_pressure_systolic,
+        blood_pressure_diastolic,
+        edema,
+        protein_in_urine,
+        sugar_in_urine,
+        other_examinations,
+        special_notes,
+        name_of_medical_institution_or_doctor
+    )
+    VALUES(
+        #{serial_no},
+        to_date(#{exam_date}, 'yyyy-mm-dd'),
+        #{week_of_pregnancy_w},
+        #{week_of_pregnancy_d},
+        #{height_of_uterus},
+        #{circumference_of_abdomen},
+        #{weight_before_pregnancy},
+        #{weight},
+        #{blood_pressure_systolic},
+        #{blood_pressure_diastolic},
+        #{edema},
+        #{protein_in_urine},
+        #{sugar_in_urine},
+        #{other_examinations},
+        #{special_notes},
+        #{name_of_medical_institution_or_doctor}
+    )
+  </insert>
+  <update id="updateCourse" parameterType="com.myintern.demo.entity.CourseOfPregnancyEntity">
+    UPDATE
+    course_of_pregnancy
+    SET
+        exam_date = to_date(#{exam_date}, 'yyyy-mm-dd'),
+        week_of_pregnancy_w = #{week_of_pregnancy_w},
+        week_of_pregnancy_d = #{week_of_pregnancy_d},
+        height_of_uterus = #{height_of_uterus},
+        circumference_of_abdomen = #{circumference_of_abdomen},
+        weight_before_pregnancy = #{weight_before_pregnancy},
+        weight = #{weight},
+        blood_pressure_systolic = #{blood_pressure_systolic},
+        blood_pressure_diastolic = #{blood_pressure_diastolic},
+        edema = #{edema},
+        protein_in_urine = #{protein_in_urine},
+        sugar_in_urine = #{sugar_in_urine},
+        other_examinations = #{other_examinations},
+        special_notes = #{special_notes},
+        name_of_medical_institution_or_doctor = #{name_of_medical_institution_or_doctor}
+    WHERE
+        id = #{id}
+  </update>
+</mapper>

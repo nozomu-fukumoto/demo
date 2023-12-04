@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myintern.demo.mapper.BasicInfomationMapper">
+  <select id="findBasic" resultType="com.myintern.demo.entity.BasicInfomationEntity">
+    SELECT
+      *
+    FROM
+      basic_information
+    WHERE
+      username = #{username}   
+  </select>
+  <select id="findBasicBySerialno" resultType="com.myintern.demo.entity.BasicInfomationEntity">
+    SELECT
+      *
+    FROM
+      basic_information
+    WHERE
+      serial_no = #{serial_no}   
+  </select>
+  <select id="findBasicAll" resultType="com.myintern.demo.entity.BasicInfomationEntity">
+    SELECT
+      *
+    FROM
+      basic_information
+  </select>
+  <select id="searchBasic" resultType="com.myintern.demo.entity.BasicInfomationEntity">
+  <![CDATA[
+    SELECT
+        *
+    FROM
+        basic_information
+  ]]>
+  <if test="guardian_name != null" >
+  <![CDATA[
+    WHERE
+      guardian_name like '%' || #{guardian_name} || '%'
+  ]]>
+  </if>
+  </select>
+</mapper>

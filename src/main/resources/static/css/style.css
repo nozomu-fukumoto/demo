@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+
+:root {
+  --primary: #0d6efd;
+  --dark: #21252f;
+  --dody: #888;
+  --box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+
+}
