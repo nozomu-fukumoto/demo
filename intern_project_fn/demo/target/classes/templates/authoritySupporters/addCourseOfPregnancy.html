@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>妊娠中の経過ページ | 母子健康手帳</title>
+  <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"></link>
+  <link href="/img/favicon.png" th:href="@{/img/favicon.png}" rel="icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+  <h1>母子健康手帳　妊娠中の経過　データ投入</h1>
+
+  <div>
+    <a href="./authoritySupporters/userlist.html" th:href="@{/supporter/userlist}">母子健康手帳利用者一覧へ</a>
+  </div>
+
+  <div th:if="${validationError}" th:each="error : ${validationError}">
+    <p th:text="${error}"></p>
+  </div>
+
+  <form th:method="post" th:action="@{/supporter/userlist/editablelist/courseOfPregnancy/add}">
+    <dl>
+      <dd><input type="hidden" id="serial_no" name="serial_no" th:value="${serial_no}"></dd>
+      
+      <dt><label for="exam_date">診察日</label></dt>
+      <dd><input type="date" id="exam_date" name="exam_date"></dd>
+
+      <dt><label for="week_of_pregnancy_w">週（妊娠週数-日）</label></dt>
+      <dd><input type="number" id="week_of_pregnancy_w" name="week_of_pregnancy_w"></dd>
+      <dt><label for="week_of_pregnancy_d">日（妊娠週数-日）</label></dt>
+      <dd><input type="number" id="week_of_pregnancy_d" name="week_of_pregnancy_d"></dd>
+
+      <dt><label for="height_of_uterus">子宮底長</label></dt>
+      <dd><input type="number" id="height_of_uterus" name="height_of_uterus">cm</dd>
+
+      <dt><label for="circumference_of_abdomen">腹囲</label></dt>
+      <dd><input type="number" id="circumference_of_abdomen" name="circumference_of_abdomen">cm</dd>
+
+      <dt><label for="weight">現在の体重</label></dt>
+      <dd><input type="number" id="weight" name="weight">㎏</dd>
+
+      <dt><label for="blood_pressure_systolic">最高血圧</label></dt>
+      <dd><input type="number" id="blood_pressure_systolic" name="blood_pressure_systolic"></dd>
+      <dt><label for="blood_pressure_diastolic">最低血圧</label></dt>
+      <dd><input type="number" id="blood_pressure_diastolic" name="blood_pressure_diastolic"></dd>
+
+      <dt><label for="">浮腫</label></dt>
+      <dd>
+        <input type="radio" id="edema" name="edema" th:value="0">-（マイナス）
+        <input type="radio" id="edema" name="edema" th:value="1">∓（プラスマイナス）
+        <input type="radio" id="edema" name="edema" th:value="2">+（プラス）
+        <input type="radio" id="edema" name="edema" th:value="3">⧺（プラスプラス）
+        <input type="radio" id="edema" name="edema" th:value="4">⧻（プラスプラスプラス）
+      </dd>
+
+      <dt><label for="">尿蛋白</label></dt>
+      <dd>
+        <input type="radio" id="protein_in_urine" name="protein_in_urine" th:value="0">-（マイナス）
+        <input type="radio" id="protein_in_urine" name="protein_in_urine" th:value="1">∓（プラスマイナス）
+        <input type="radio" id="protein_in_urine" name="protein_in_urine" th:value="2">+（プラス）
+        <input type="radio" id="protein_in_urine" name="protein_in_urine" th:value="3">⧺（プラスプラス）
+        <input type="radio" id="protein_in_urine" name="protein_in_urine" th:value="4">⧻（プラスプラスプラス）
+      </dd>
+
+      <dt><label for="">尿糖</label></dt>
+      <dd>
+        <input type="radio" id="sugar_in_urine" name="sugar_in_urine" th:value="0">-（マイナス）
+        <input type="radio" id="sugar_in_urine" name="sugar_in_urine" th:value="1">∓（プラスマイナス）
+        <input type="radio" id="sugar_in_urine" name="sugar_in_urine" th:value="2">+（プラス）
+        <input type="radio" id="sugar_in_urine" name="sugar_in_urine" th:value="3">⧺（プラスプラス）
+        <input type="radio" id="sugar_in_urine" name="sugar_in_urine" th:value="4">⧻（プラスプラスプラス）
+      </dd>
+
+      <dt><label for="other_examinations">その他の検査（血液検査、血糖、超音波など）</label></dt>
+      <dd><input type="text" id="other_examinations" name="other_examinations"></dd></dd>
+
+      <dt><label for="special_notes">特記事項（安静・休業などの指示や切迫早産等の産科疾患や合併症など）</label></dt>
+      <dd><input type="text" id="special_notes" name="special_notes"></dd></dd>
+
+      <dt><label for="name_of_medical_institution_or_doctor">施設名又は担当者名</label></dt>
+      <dd><input type="text" id="name_of_medical_institution_or_doctor" name="name_of_medical_institution_or_doctor"></dd></dd>
+
+      <input type="submit" value="登録" />
+    </dl>
+  </form>
+  
+
+</body>
+</html>

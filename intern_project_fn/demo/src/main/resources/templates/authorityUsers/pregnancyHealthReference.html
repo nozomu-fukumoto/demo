@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1ページ | 母子健康手帳</title>
+  <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"></link>
+  <link href="/img/favicon.png" th:href="@{/img/favicon.png}" rel="icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+  <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html" th:href="@{/}">
+        <img th:src="@{/img/logo_transparent.png}" alt="logo" width="150">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav me-auto mb-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  href="../index.html" th:href="@{/}">トップ</a>
+          </li>
+          <li class="nav-item">
+            <a href="./logout.html" class="btn btn-info text-white" th:href="@{/logout}">ログアウト</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="list">
+    <div class="container" th:each="heathStatus : ${heathStatusList}" th:object="${heathStatus}">
+      <h6 class="text-body my-2 text-center">妊婦の健康状態について</h6>
+
+      <div class="container">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th>身長</th>
+            </tr>
+            <tr>
+              <td th:text="|${heathStatus.height} ㎝|"></td>
+            </tr>
+            <tr>
+              <th>体重</th>
+            </tr>
+            <tr>
+              <td th:text="|${heathStatus.weight} ㎏|"></td>
+            </tr>
+            <tr>
+              <th>BMI</th>
+            </tr>
+            <tr>
+              <td th:text="${#numbers.formatDecimal(heathStatus.bmi, 0, 'COMMA', 3, 'POINT')}"></td>
+            </tr>
+
+            <tr>
+              <th>罹患歴_高血圧</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.sickening_history_high_blood_pressure}">
+                <td th:case="0" th:text="なし"></td>
+                <td th:case="1" th:text="あり"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>罹患歴_腎臓病</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.sickening_history_kidney_disease}">
+                <td th:case="0" th:text="なし"></td>
+                <td th:case="1" th:text="あり"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>罹患歴_糖尿病</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.sickening_history_diabetes}">
+                <td th:case="0" th:text="なし"></td>
+                <td th:case="1" th:text="あり"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>罹患歴_肺炎</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.sickening_history_pneumonia}">
+                <td th:case="0" th:text="なし"></td>
+                <td th:case="1" th:text="あり"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>罹患歴_心臓病</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.sickening_history_cardiac_disease}">
+                <td th:case="0" th:text="なし"></td>
+                <td th:case="1" th:text="あり"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>罹患歴_甲状腺</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.sickening_history_thyroid}">
+                <td th:case="0" th:text="なし"></td>
+                <td th:case="1" th:text="あり"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>罹患歴_精神疾患</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.sickening_history_mental_disorder}">
+                <td th:case="0" th:text="なし"></td>
+                <td th:case="1" th:text="あり"></td>
+              </th:block>
+            </tr>
+
+            <tr>
+              <th>罹患歴_その他</th>
+            </tr>
+            <tr>
+              <td th:text="${heathStatus.sickening_history_other}"></td>
+            </tr>
+            
+            <tr>
+              <th>感染症歴_風疹(三日はしか)</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.infection_history_rubella}">
+                <td th:case=0 th:text="なし（予防接種も受けていない）"></td>
+                <td th:case=1 th:text="なし（予防接種は受けている）"></td>
+                <td th:case=2 th:text="あり（予防接種は受けていない）"></td>
+                <td th:case=3 th:text="あり（予防接種は受けている）"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>感染症歴_麻疹(はしか)</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.infection_history_measles}">
+                <td th:case=0 th:text="なし（予防接種も受けていない）"></td>
+                <td th:case=1 th:text="なし（予防接種は受けている）"></td>
+                <td th:case=2 th:text="あり（予防接種は受けていない）"></td>
+                <td th:case=3 th:text="あり（予防接種は受けている）"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>感染症歴_水痘(みずぼうそう)</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.infection_history_chickenpox}">
+                <td th:case=0 th:text="なし（予防接種も受けていない）"></td>
+                <td th:case=1 th:text="なし（予防接種は受けている）"></td>
+                <td th:case=2 th:text="あり（予防接種は受けていない）"></td>
+                <td th:case=3 th:text="あり（予防接種は受けている）"></td>
+              </th:block>
+            </tr>
+
+            <tr>
+              <th>手術歴</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.infection_history_chickenpox}">
+                <td th:case=0 th:text="受けたことはない"></td>
+                <td th:case=1 th:text="受けたことがある"></td>
+              </th:block>
+            </tr>
+            <tr>  
+            </tr>
+            <tr>
+              <td th:text="${heathStatus.surgery_history_type}"></td>
+            </tr>
+
+            <tr>
+              <th>常用薬</th>
+            </tr>
+            <tr>
+              <td th:text="${heathStatus.surgery_history_type}"></td>
+            </tr>
+            <tr>
+              <th>アレルギー</th>
+            </tr>
+            <tr>
+              <td th:text="${heathStatus.allergy_type}"></td>
+            </tr>
+            <tr>
+              <th>ストレスについて</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.stress_flag}">
+                <td th:case=0 th:text="現状ストレスを感じていない"></td>
+                <td th:case=1 th:text="ストレスを感じている"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>心配なことについて</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.worry_flag}">
+                <td th:case=0 th:text="現状心配なことはない"></td>
+                <td th:case=1 th:text="心配なことがある"></td>
+              </th:block>
+            </tr>
+            <tr>  
+            </tr>
+            <tr>
+              <td th:text="${heathStatus.worry_other}"></td>
+            </tr>
+
+            <tr>
+              <th>喫煙について</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.smoking_flag}">
+                <td th:case=0 th:text="吸ったことがない"></td>
+                <td th:case=1 th:text="吸ったことがある"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>本人の喫煙歴・喫煙状況</th>
+            </tr>
+            <tr>
+              <td th:text="${heathStatus.smoking_status}"></td>
+            </tr>
+            <tr>
+              <th>同居者の喫煙状況</th>
+            </tr>
+            <tr>
+              <td th:text="${heathStatus.smoking_status_living_together_person}"></td>
+            </tr>
+
+            <tr>
+              <th>飲酒について</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.drinking_flag}">
+                <td th:case=0 th:text="飲んだことがない"></td>
+                <td th:case=1 th:text="飲んだことがある"></td>
+              </th:block>
+            </tr>
+            <tr>
+              <th>本人の飲酒歴・飲酒状況</th>
+            </tr>
+            <tr>
+              <td th:text="${heathStatus.drinking_status}"></td>
+            </tr>
+
+            <tr>
+              <th>パートナーの健康について</th>
+            </tr>
+            <tr>
+              <th:block th:switch="${heathStatus.partner_health_flag}">
+                <td th:case=0 th:text="健康"></td>
+                <td th:case=1 th:text="よくない"></td>
+              </th:block>
+            </tr>
+            <tr>  
+            </tr>
+            <tr>
+              <td th:text="${heathStatus.partner_health_state}"></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="my-2">
+        <a href="./authorityUsers/editPregnancyHealthReference.html" th:href="@{'/mypage/'+ ${heathStatus.serial_no} + '/authorityUsers/editPregnancyHealthReference'}" class="btn btn-info text-white" th:value="${heathStatus.serial_no}">登録内容を変更する</a>
+      </div>
+      <div class="my-2">
+        <a href="./mypage.html" th:href="@{/mypage/{serial_no}(serial_no=*{serial_no})}" class="btn btn-secondary text-white" th:value="${heathStatus.serial_no}">マイページへ戻る</a>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myintern.demo.mapper.PregnancyHealthReferenceMapper">
+  <select id="findHealthStatus" resultType="com.myintern.demo.entity.PregnancyHealthReferenceEntity">
+    SELECT
+      *
+    FROM
+      pregnancy_health_reference
+    WHERE
+      serial_no = #{serial_no}   
+  </select>
+  <update id="updateHealthStatus" parameterType="com.myintern.demo.entity.PregnancyHealthReferenceEntity">
+    UPDATE
+        pregnancy_health_reference
+    SET
+        height = #{height},
+        weight = #{weight},
+        bmi = #{bmi},
+        sickening_history_high_blood_pressure = #{sickening_history_high_blood_pressure},
+        sickening_history_kidney_disease = #{sickening_history_kidney_disease},
+        sickening_history_diabetes = #{sickening_history_diabetes},
+        sickening_history_pneumonia = #{sickening_history_pneumonia},
+        sickening_history_cardiac_disease = #{sickening_history_cardiac_disease},
+        sickening_history_thyroid = #{sickening_history_thyroid},
+        sickening_history_mental_disorder = #{sickening_history_mental_disorder},
+        sickening_history_other = #{sickening_history_other},
+        infection_history_rubella = #{infection_history_rubella},
+        infection_history_measles = #{infection_history_measles},
+        infection_history_chickenpox = #{infection_history_chickenpox},
+        surgery_history_flag = #{surgery_history_flag},
+        surgery_history_type = #{surgery_history_type},
+        regular_use_drug = #{regular_use_drug},
+        allergy_type = #{allergy_type},
+        stress_flag = #{stress_flag},
+        worry_flag = #{worry_flag},
+        worry_other = #{worry_other},
+        smoking_flag = #{smoking_flag},
+        smoking_status = #{smoking_status},
+        smoking_status_living_together_person = #{smoking_status_living_together_person},
+        drinking_flag = #{drinking_flag},
+        drinking_status = #{drinking_status},
+        partner_health_flag = #{partner_health_flag},
+        partner_health_state = #{partner_health_state}
+    WHERE
+        serial_no = #{serial_no}
+  </update>  
+</mapper>
