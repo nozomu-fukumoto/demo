@@ -12,4 +12,8 @@ public interface PregnancyHealthReferenceMapper {
 
   // 妊婦の健康状態更新(UPDATE)
   public void updateHealthStatus(PregnancyHealthReferenceEntity pregnancyHealthReferenceEntity);
+
+  // 妊婦の健康状態更新(INSERT)
+  public void addHealthStatus(PregnancyHealthReferenceEntity pregnancyHealthReferenceEntity);
+  
 }

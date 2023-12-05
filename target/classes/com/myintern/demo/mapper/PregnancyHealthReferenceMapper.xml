@@ -45,5 +45,69 @@
         partner_health_state = #{partner_health_state}
     WHERE
         serial_no = #{serial_no}
-  </update>  
+  </update>
+  <insert id="addHealthStatus" parameterType="com.myintern.demo.entity.PregnancyHealthReferenceEntity">
+    INSERT INTO pregnancy_health_reference(
+        serial_no,
+        height,
+        weight,
+        bmi,
+        sickening_history_high_blood_pressure,
+        sickening_history_kidney_disease,
+        sickening_history_diabetes,
+        sickening_history_pneumonia,
+        sickening_history_cardiac_disease,
+        sickening_history_thyroid,
+        sickening_history_mental_disorder,
+        sickening_history_other,
+        infection_history_rubella,
+        infection_history_measles,
+        infection_history_chickenpox,
+        surgery_history_flag,
+        surgery_history_type,
+        regular_use_drug,
+        allergy_type,
+        stress_flag,
+        worry_flag,
+        worry_other,
+        smoking_flag,
+        smoking_status,
+        smoking_status_living_together_person,
+        drinking_flag,
+        drinking_status,
+        partner_health_flag,
+        partner_health_state
+    )
+    VALUES(
+        #{serial_no},
+        #{height},
+        #{weight},
+        #{bmi},
+        #{sickening_history_high_blood_pressure},
+        #{sickening_history_kidney_disease},
+        #{sickening_history_diabetes},
+        #{sickening_history_pneumonia},
+        #{sickening_history_cardiac_disease},
+        #{sickening_history_thyroid},
+        #{sickening_history_mental_disorder},
+        #{sickening_history_other},
+        #{infection_history_rubella},
+        #{infection_history_measles},
+        #{infection_history_chickenpox},
+        #{surgery_history_flag},
+        #{surgery_history_type},
+        #{regular_use_drug},
+        #{allergy_type},
+        #{stress_flag},
+        #{worry_flag},
+        #{worry_other},
+        #{smoking_flag},
+        #{smoking_status},
+        #{smoking_status_living_together_person},
+        #{drinking_flag},
+        #{drinking_status},
+        #{partner_health_flag},
+        #{partner_health_state}
+    )
+  </insert>
 </mapper>

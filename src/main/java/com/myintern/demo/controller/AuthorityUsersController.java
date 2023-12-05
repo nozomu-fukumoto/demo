@@ -23,6 +23,7 @@ public class AuthorityUsersController {
   public String showHealthPage(Model model, @PathVariable long serial_no) {
     List<PregnancyHealthReferenceEntity> heathStatusList = pregnancyHealthReferenceMapper.findHealthStatus(serial_no);
     model.addAttribute("heathStatusList", heathStatusList);
+    model.addAttribute("serial_no", serial_no);
     return "authorityUsers/pregnancyHealthReference";
   }
 
@@ -40,5 +41,17 @@ public class AuthorityUsersController {
     long serial_no = pregnancyHealthReferenceEntity.getSerial_no();
     return "redirect:/mypage/" + serial_no + "/authorityUsers/pregnancyHealthReference";
   }
-  
+ 
+  @GetMapping(value= "/mypage/{serial_no}/authorityUsers/addPregnancyHealthReference")
+  public String showAddHealthPage(@PathVariable long serial_no) {
+    return "authorityUsers/addPregnancyHealthReference";
+  }
+
+  @RequestMapping(value="/authorityUsers/addPregnancyHealthReference/add")
+  public String addHealthPage(PregnancyHealthReferenceEntity pregnancyHealthReferenceEntity) {
+    pregnancyHealthReferenceMapper.addHealthStatus(pregnancyHealthReferenceEntity);
+    long serial_no = pregnancyHealthReferenceEntity.getSerial_no();
+    return "redirect:/mypage/" + serial_no + "/authorityUsers/pregnancyHealthReference";
+  }  
+
 }

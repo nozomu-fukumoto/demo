@@ -32,76 +32,67 @@
     </div>
   </nav>
 
-  <section id="updateform">
-    <div class="container" th:each="editHeathStatus : ${editHeathStatusList}">
-      <div class="row">
+  <section id="addform">
+    <div class="container">
+      <form th:method="post" th:action="@{/authorityUsers/addPregnancyHealthReference/add}">
         <div class="col-md-8 mx-auto mb-4">
-          <h6 class="text-body my-2 text-center">妊婦の健康状態 編集画面</h6>
+          <input type="hidden" class="form-control" id="serial_no" name="serial_no" th:value="${serial_no}">
         </div>
-      </div>
-
-      <form th:method="post" th:action="@{/authorityUsers/editPregnancyHealthReference/update}">
-        <div class="col-md-8 mx-auto mb-4">
-          <input type="hidden" class="form-control" id="serial_no" name="serial_no" th:value="${editHeathStatus.serial_no}">
-        </div>
-
         <div class="col-md-8 mx-auto mb-4">
           <label for="user_height" class="form-label">身長（㎝）</label>
-          <input type="number" class="form-control" id="user_height" name="height" th:value="${editHeathStatus.height}">
+          <input type="number" class="form-control" id="user_height" name="height">
         </div>
         <div class="col-md-8 mx-auto mb-4">
-          <label for="user_height" class="form-label">体重（㎏）</label>
-          <input type="number" class="form-control" id="weight" name="weight" th:value="${editHeathStatus.weight}">
+          <label for="weight" class="form-label">体重（㎏）</label>
+          <input type="number" class="form-control" id="weight" name="weight">
         </div>
         <div class="col-md-8 mx-auto mb-4">
           <label for="bmi" class="form-label">BMI（※身長・体重を入力のうえ、ボタンを押してください）
           </label>
           <input type="button" onclick="calc(user_height.value, weight.value);" value="計算">
-          <input type="text" class="form-control" id="bmi" name="bmi" readonly="" th:value="${editHeathStatus.bmi}">
+          <input type="text" class="form-control" id="bmi" name="bmi" readonly="">
         </div>
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="sickening_history_high_blood_pressure" class="form-label">高血圧と診断されたことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_high_blood_pressure" id="sickening_history_high_blood_pressure" th:value="0" th:checked="${editHeathStatus.sickening_history_high_blood_pressure == 0}">
+            <input class="form-check-input" type="radio" name="sickening_history_high_blood_pressure" id="sickening_history_high_blood_pressure" th:value="0">
             <label class="form-check-label" for="sickening_history_high_blood_pressure">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_high_blood_pressure" id="sickening_history_high_blood_pressure" th:value="1" th:checked="${editHeathStatus.sickening_history_high_blood_pressure == 1}">
+            <input class="form-check-input" type="radio" name="sickening_history_high_blood_pressure" id="sickening_history_high_blood_pressure" th:value="1">
             <label class="form-check-label" for="sickening_history_high_blood_pressure">
               ある
             </label>
           </div>
         </div>
-
         <div class="col-md-8 mx-auto mb-4">
           <label for="sickening_history_kidney_disease" class="form-label">腎臓病と診断されたことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_kidney_disease" id="sickening_history_kidney_disease" th:value="0" th:checked="${editHeathStatus.sickening_history_kidney_disease == 0}">
+            <input class="form-check-input" type="radio" name="sickening_history_kidney_disease" id="sickening_history_kidney_disease" th:value="0">
             <label class="form-check-label" for="sickening_history_kidney_disease">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_kidney_disease" id="sickening_history_kidney_disease" th:value="1" th:checked="${editHeathStatus.sickening_history_kidney_disease == 1}">
+            <input class="form-check-input" type="radio" name="sickening_history_kidney_disease" id="sickening_history_kidney_disease" th:value="1">
             <label class="form-check-label" for="sickening_history_kidney_disease">
               ある
             </label>
           </div>
         </div>
-
         <div class="col-md-8 mx-auto mb-4">
           <label for="sickening_history_diabetes" class="form-label">糖尿病と診断されたことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_diabetes" id="sickening_history_diabetes" th:value="0" th:checked="${editHeathStatus.sickening_history_diabetes == 0}">
+            <input class="form-check-input" type="radio" name="sickening_history_diabetes" id="sickening_history_diabetes" th:value="0">
             <label class="form-check-label" for="sickening_history_diabetes">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_diabetes" id="sickening_history_diabetes" th:value="1" th:checked="${editHeathStatus.sickening_history_diabetes == 1}">
+            <input class="form-check-input" type="radio" name="sickening_history_diabetes" id="sickening_history_diabetes" th:value="1">
             <label class="form-check-label" for="sickening_history_diabetes">
               ある
             </label>
@@ -111,13 +102,13 @@
         <div class="col-md-8 mx-auto mb-4">
           <label for="sickening_history_pneumonia" class="form-label">肺炎と診断されたことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_pneumonia" id="sickening_history_pneumonia" th:value="0" th:checked="${editHeathStatus.sickening_history_pneumonia == 0}">
+            <input class="form-check-input" type="radio" name="sickening_history_pneumonia" id="sickening_history_pneumonia" th:value="0">
             <label class="form-check-label" for="sickening_history_pneumonia">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_pneumonia" id="sickening_history_pneumonia" th:value="1" th:checked="${editHeathStatus.sickening_history_pneumonia == 1}">
+            <input class="form-check-input" type="radio" name="sickening_history_pneumonia" id="sickening_history_pneumonia" th:value="1">
             <label class="form-check-label" for="sickening_history_pneumonia">
               ある
             </label>
@@ -127,13 +118,13 @@
         <div class="col-md-8 mx-auto mb-4">
           <label for="sickening_history_cardiac_disease" class="form-label">心臓病と診断されたことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_cardiac_disease" id="sickening_history_cardiac_disease" th:value="0" th:checked="${editHeathStatus.sickening_history_cardiac_disease == 0}">
+            <input class="form-check-input" type="radio" name="sickening_history_cardiac_disease" id="sickening_history_cardiac_disease" th:value="0">
             <label class="form-check-label" for="sickening_history_cardiac_disease">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_cardiac_disease" id="sickening_history_cardiac_disease" th:value="1" th:checked="${editHeathStatus.sickening_history_cardiac_disease == 1}">
+            <input class="form-check-input" type="radio" name="sickening_history_cardiac_disease" id="sickening_history_cardiac_disease" th:value="1">
             <label class="form-check-label" for="sickening_history_cardiac_disease">
               ある
             </label>
@@ -143,13 +134,13 @@
         <div class="col-md-8 mx-auto mb-4">
           <label for="sickening_history_thyroid" class="form-label">甲状腺疾患と診断されたことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_thyroid" id="sickening_history_thyroid" th:value="0" th:checked="${editHeathStatus.sickening_history_thyroid == 0}">
+            <input class="form-check-input" type="radio" name="sickening_history_thyroid" id="sickening_history_thyroid" th:value="0">
             <label class="form-check-label" for="sickening_history_thyroid">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_thyroid" id="sickening_history_thyroid" th:value="1" th:checked="${editHeathStatus.sickening_history_thyroid == 1}">
+            <input class="form-check-input" type="radio" name="sickening_history_thyroid" id="sickening_history_thyroid" th:value="1">
             <label class="form-check-label" for="sickening_history_thyroid">
               ある
             </label>
@@ -159,13 +150,13 @@
         <div class="col-md-8 mx-auto mb-4">
           <label for="sickening_history_mental_disorder" class="form-label">精神疾患と診断されたことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_mental_disorder" id="sickening_history_mental_disorder" th:value="0" th:checked="${editHeathStatus.sickening_history_mental_disorder == 0}">
+            <input class="form-check-input" type="radio" name="sickening_history_mental_disorder" id="sickening_history_mental_disorder" th:value="0">
             <label class="form-check-label" for="sickening_history_mental_disorder">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="sickening_history_mental_disorder" id="sickening_history_mental_disorder" th:value="1" th:checked="${editHeathStatus.sickening_history_mental_disorder == 1}">
+            <input class="form-check-input" type="radio" name="sickening_history_mental_disorder" id="sickening_history_mental_disorder" th:value="1">
             <label class="form-check-label" for="sickening_history_mental_disorder">
               ある
             </label>
@@ -174,31 +165,31 @@
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="sickening_history_other" class="form-label">その他診断された病気はありますか</label>
-          <input type="text" class="form-control" id="sickening_history_other" name="sickening_history_other" th:value="${editHeathStatus.sickening_history_other}">
+          <input type="text" class="form-control" id="sickening_history_other" name="sickening_history_other">
         </div>
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="infection_history_rubella" class="form-label">風疹にかかったことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_rubella" id="infection_history_rubella" th:value="0" th:checked="${editHeathStatus.infection_history_rubella == 0}">
+            <input class="form-check-input" type="radio" name="infection_history_rubella" id="infection_history_rubella" th:value="0">
             <label class="form-check-label" for="infection_history_rubella">
               ない（予防接種も受けていない）
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_rubella" id="infection_history_rubella" th:value="1" th:checked="${editHeathStatus.infection_history_rubella == 1}">
+            <input class="form-check-input" type="radio" name="infection_history_rubella" id="infection_history_rubella" th:value="1">
             <label class="form-check-label" for="infection_history_rubella">
               ない（予防接種は受けている）
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_rubella" id="infection_history_rubella" th:value="2" th:checked="${editHeathStatus.infection_history_rubella == 2}">
+            <input class="form-check-input" type="radio" name="infection_history_rubella" id="infection_history_rubella" th:value="2">
             <label class="form-check-label" for="infection_history_rubella">
               あり（予防接種は受けていない）
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_rubella" id="infection_history_rubella" th:value="3" th:checked="${editHeathStatus.infection_history_rubella == 3}">
+            <input class="form-check-input" type="radio" name="infection_history_rubella" id="infection_history_rubella" th:value="3">
             <label class="form-check-label" for="infection_history_rubella">
               あり（予防接種は受けている）
             </label>
@@ -208,25 +199,25 @@
         <div class="col-md-8 mx-auto mb-4">
           <label for="infection_history_measles" class="form-label">麻疹にかかったことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_measles" id="infection_history_measles" th:value="0" th:checked="${editHeathStatus.infection_history_measles == 0}">
+            <input class="form-check-input" type="radio" name="infection_history_measles" id="infection_history_measles" th:value="0">
             <label class="form-check-label" for="infection_history_measles">
               ない（予防接種も受けていない）
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_measles" id="infection_history_measles" th:value="1" th:checked="${editHeathStatus.infection_history_measles == 1}">
+            <input class="form-check-input" type="radio" name="infection_history_measles" id="infection_history_measles" th:value="1">
             <label class="form-check-label" for="infection_history_measles">
               ない（予防接種は受けている）
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_measles" id="infection_history_measles" th:value="2" th:checked="${editHeathStatus.infection_history_measles == 2}">
+            <input class="form-check-input" type="radio" name="infection_history_measles" id="infection_history_measles" th:value="2">
             <label class="form-check-label" for="infection_history_measles">
               あり（予防接種は受けていない）
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_measles" id="infection_history_measles" th:value="3" th:checked="${editHeathStatus.infection_history_measles == 3}">
+            <input class="form-check-input" type="radio" name="infection_history_measles" id="infection_history_measles" th:value="3">
             <label class="form-check-label" for="infection_history_measles">
               あり（予防接種は受けている）
             </label>
@@ -236,25 +227,25 @@
         <div class="col-md-8 mx-auto mb-4">
           <label for="infection_history_chickenpox" class="form-label">水痘にかかったことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_chickenpox" id="infection_history_chickenpox" th:value="0" th:checked="${editHeathStatus.infection_history_chickenpox == 0}">
+            <input class="form-check-input" type="radio" name="infection_history_chickenpox" id="infection_history_chickenpox" th:value="0">
             <label class="form-check-label" for="infection_history_chickenpox">
               ない（予防接種も受けていない）
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_chickenpox" id="infection_history_chickenpox" th:value="1" th:checked="${editHeathStatus.infection_history_chickenpox == 1}">
+            <input class="form-check-input" type="radio" name="infection_history_chickenpox" id="infection_history_chickenpox" th:value="1">
             <label class="form-check-label" for="infection_history_chickenpox">
               ない（予防接種は受けている）
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_chickenpox" id="infection_history_chickenpox" th:value="2" th:checked="${editHeathStatus.infection_history_chickenpox == 2}">
+            <input class="form-check-input" type="radio" name="infection_history_chickenpox" id="infection_history_chickenpox" th:value="2">
             <label class="form-check-label" for="infection_history_chickenpox">
               あり（予防接種は受けていない）
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="infection_history_chickenpox" id="infection_history_chickenpox" th:value="3" th:checked="${editHeathStatus.infection_history_chickenpox == 3}">
+            <input class="form-check-input" type="radio" name="infection_history_chickenpox" id="infection_history_chickenpox" th:value="3">
             <label class="form-check-label" for="infection_history_chickenpox">
               あり（予防接種は受けている）
             </label>
@@ -264,13 +255,13 @@
         <div class="col-md-8 mx-auto mb-4">
           <label for="surgery_history_flag" class="form-label">手術を受けたことが</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="surgery_history_flag" id="surgery_history_flag" th:value="0" th:checked="${editHeathStatus.surgery_history_flag == 0}">
+            <input class="form-check-input" type="radio" name="surgery_history_flag" id="surgery_history_flag" th:value="0">
             <label class="form-check-label" for="surgery_history_flag">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="surgery_history_flag" id="surgery_history_flag" th:value="1" th:checked="${editHeathStatus.surgery_history_flag == 1}">
+            <input class="form-check-input" type="radio" name="surgery_history_flag" id="surgery_history_flag" th:value="1">
             <label class="form-check-label" for="surgery_history_flag">
               ある
             </label>
@@ -279,29 +270,29 @@
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="surgery_history_type" class="form-label">手術を受けた際の病名</label>
-          <input type="text" class="form-control" id="surgery_history_type" name="surgery_history_type" th:value="${editHeathStatus.surgery_history_type}">
+          <input type="text" class="form-control" id="surgery_history_type" name="surgery_history_type">
         </div>
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="regular_use_drug" class="form-label">服薬中の薬があれば記入してください</label>
-          <input type="text" class="form-control" id="regular_use_drug" name="regular_use_drug" th:value="${editHeathStatus.regular_use_drug}">
+          <input type="text" class="form-control" id="regular_use_drug" name="regular_use_drug">
         </div>
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="allergy_type" class="form-label">薬剤や食品などのアレルギーがあれば記入してください</label>
-          <input type="text" class="form-control" id="allergy_type" name="allergy_type" th:value="${editHeathStatus.allergy_type}">
+          <input type="text" class="form-control" id="allergy_type" name="allergy_type">
         </div>
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="stress_flag" class="form-label">家庭や仕事など日常生活で強いストレスを感じていますか</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="stress_flag" id="stress_flag" th:value="0" th:checked="${editHeathStatus.stress_flag == 0}">
+            <input class="form-check-input" type="radio" name="stress_flag" id="stress_flag" th:value="0">
             <label class="form-check-label" for="stress_flag">
               いいえ
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="stress_flag" id="stress_flag" th:value="1" th:checked="${editHeathStatus.stress_flag == 1}">
+            <input class="form-check-input" type="radio" name="stress_flag" id="stress_flag" th:value="1">
             <label class="form-check-label" for="stress_flag">
               はい
             </label>
@@ -311,13 +302,13 @@
         <div class="col-md-8 mx-auto mb-4">
           <label for="worry_flag" class="form-label">今回の妊娠に際し、心配なことはありますか</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="worry_flag" id="worry_flag" th:value="0" th:checked="${editHeathStatus.worry_flag == 0}">
+            <input class="form-check-input" type="radio" name="worry_flag" id="worry_flag" th:value="0">
             <label class="form-check-label" for="worry_flag">
               いいえ
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="worry_flag" id="worry_flag" th:value="1" th:checked="${editHeathStatus.worry_flag == 1}">
+            <input class="form-check-input" type="radio" name="worry_flag" id="worry_flag" th:value="1">
             <label class="form-check-label" for="worry_flag">
               はい
             </label>
@@ -326,19 +317,19 @@
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="worry_other" class="form-label">どんなことが心配ですか</label>
-          <input type="text" class="form-control" id="worry_other" name="worry_other" th:value="${editHeathStatus.worry_other}">
+          <input type="text" class="form-control" id="worry_other" name="worry_other">
         </div>
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="smoking_flag" class="form-label">これまでにタバコを吸ったことがありますか</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="smoking_flag" id="smoking_flag" th:value="0" th:checked="${editHeathStatus.smoking_flag == 0}">
+            <input class="form-check-input" type="radio" name="smoking_flag" id="smoking_flag" th:value="0">
             <label class="form-check-label" for="smoking_flag">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="smoking_flag" id="smoking_flag" th:value="1" th:checked="${editHeathStatus.smoking_flag == 1}">
+            <input class="form-check-input" type="radio" name="smoking_flag" id="smoking_flag" th:value="1">
             <label class="form-check-label" for="smoking_flag">
               ある
             </label>
@@ -347,24 +338,24 @@
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="smoking_status" class="form-label">喫煙状況について教えてください</label>
-          <input type="text" class="form-control" id="smoking_status" name="smoking_status" th:value="${editHeathStatus.smoking_status}">
+          <input type="text" class="form-control" id="smoking_status" name="smoking_status">
         </div>
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="smoking_status_living_together_person" class="form-label">同居者がいる場合、その方の喫煙状況について教えてください</label>
-          <input type="text" class="form-control" id="smoking_status_living_together_person" name="smoking_status_living_together_person" th:value="${editHeathStatus.smoking_status_living_together_person}">
+          <input type="text" class="form-control" id="smoking_status_living_together_person" name="smoking_status_living_together_person">
         </div>
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="drinking_flag" class="form-label">これまでにお酒を飲んだことがありますか</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="drinking_flag" id="drinking_flag" th:value="0" th:checked="${editHeathStatus.drinking_flag == 0}">
+            <input class="form-check-input" type="radio" name="drinking_flag" id="drinking_flag" th:value="0">
             <label class="form-check-label" for="drinking_flag">
               ない
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="drinking_flag" id="drinking_flag" th:value="1" th:checked="${editHeathStatus.drinking_flag == 1}">
+            <input class="form-check-input" type="radio" name="drinking_flag" id="drinking_flag" th:value="1">
             <label class="form-check-label" for="drinking_flag">
               ある
             </label>
@@ -373,19 +364,19 @@
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="drinking_status" class="form-label">飲酒状況について教えてください</label>
-          <input type="text" class="form-control" id="drinking_status" name="drinking_status" th:value="${editHeathStatus.drinking_status}">
+          <input type="text" class="form-control" id="drinking_status" name="drinking_status">
         </div>
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="partner_health_flag" class="form-label">夫・パートナーの健康状態は</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="partner_health_flag" id="partner_health_flag" th:value="0" th:checked="${editHeathStatus.partner_health_flag == 0}">
+            <input class="form-check-input" type="radio" name="partner_health_flag" id="partner_health_flag" th:value="0">
             <label class="form-check-label" for="partner_health_flag">
               よい
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="partner_health_flag" id="partner_health_flag" th:value="1" th:checked="${editHeathStatus.partner_health_flag == 1}">
+            <input class="form-check-input" type="radio" name="partner_health_flag" id="partner_health_flag" th:value="1">
             <label class="form-check-label" for="partner_health_flag">
               よくない
             </label>
@@ -394,16 +385,16 @@
 
         <div class="col-md-8 mx-auto mb-4">
           <label for="partner_health_state" class="form-label">夫・パートナーの健康状態について教えてください</label>
-          <input type="text" class="form-control" id="partner_health_state" name="partner_health_state" th:value="${editHeathStatus.partner_health_state}">
+          <input type="text" class="form-control" id="partner_health_state" name="partner_health_state">
         </div>
 
         <div class="my-2">
-          <input class="btn btn-info text-white" type="submit" value="更新" />
+          <input class="btn btn-info text-white" type="submit" value="登録" />
         </div>
         <div class="my-2">
-          <a href="./authorityUsers/pregnancyHealthReference.html" th:href="@{'/mypage/'+ ${editHeathStatus.serial_no} + '/authorityUsers/pregnancyHealthReference'}" th:value="${editHeathStatus.serial_no}" class="btn btn-secondary text-white">やめる</a>
+          <a href="./authorityUsers/pregnancyHealthReference.html" th:href="@{'/mypage/'+ ${serial_no} + '/authorityUsers/pregnancyHealthReference'}" th:value="${serial_no}" class="btn btn-secondary text-white">やめる</a>
         </div>
-        
+
       </form>
     </div>
   </section>

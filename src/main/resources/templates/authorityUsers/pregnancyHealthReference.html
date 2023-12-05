@@ -33,6 +33,19 @@
   </nav>
 
   <section id="list">
+    <div class="container" th:unless="${heathStatusList != null and not #lists.isEmpty(heathStatusList)}">
+      <h6 class="text-body my-2 text-center">妊婦の健康状態について</h6>
+      <div>
+        <div style="text-align: center;">
+          <a href="./authorityUsers/addPregnancyHealthReference.html" th:href="@{'/mypage/'+ ${serial_no} + '/authorityUsers/addPregnancyHealthReference'}" class="btn btn-info text-white">
+            新規登録する
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="list">
     <div class="container" th:each="heathStatus : ${heathStatusList}" th:object="${heathStatus}">
       <h6 class="text-body my-2 text-center">妊婦の健康状態について</h6>
 
