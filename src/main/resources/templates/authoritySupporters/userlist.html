@@ -16,7 +16,7 @@
     <a href="./index.html" th:href="@{/}">トップページへ</a>
   </div>
 
-  <form method="post" th:action="@{/supporter/userlist/search}" th:object="${getForm}">
+  <form method="post" th:action="@{/supporter/datamenu/userlist/search}" th:object="${getForm}">
     <p>利用者名検索</p>
     <div>
       <label>利用者名入力</label>
@@ -33,7 +33,7 @@
       <td th:text="${user.serial_no}"></td>
       <td th:text="${user.guardian_name}"></td>
       <td th:text="${user.issue_date_ymd}"></td>
-      <td><a href="./editablelistpage.html" th:href="@{'/supporter/userlist/editablelist/' + ${user.serial_no}}" th:value="${user.serial_no}">編集する</a></td>
+      <td><a href="./editablelistpage.html" th:href="@{'/supporter/datamenu/userlist/editablelist/' + ${user.serial_no}}" th:value="${user.serial_no}">編集する</a></td>
     </tr>
   </table>
 

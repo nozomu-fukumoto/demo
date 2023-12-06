@@ -7,13 +7,10 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.myintern.demo.auth.CustomUserDetails;
 import com.myintern.demo.entity.BasicInfomationEntity;
-import com.myintern.demo.form.GetFormUserList;
 import com.myintern.demo.form.UserManagement;
 import com.myintern.demo.mapper.BasicInfomationMapper;
 
@@ -38,22 +35,6 @@ public class IndexContoller {
     List<BasicInfomationEntity> basicInfomation = basicInfomationMapper.findBasicBySerialno(serial_no);
     model.addAttribute("basicInfomation", basicInfomation);
     return "mypage";
-  }
-
-  @GetMapping("/supporter/userlist")
-  public String showUserList(Model model) {
-    List<BasicInfomationEntity> userlist = basicInfomationMapper.findBasicAll();
-    model.addAttribute("getForm", userManagement.initializeForm());
-    model.addAttribute("userlist", userlist);
-    return "authoritySupporters/userlist";
-  }
-
-  @RequestMapping("/supporter/userlist/search")
-  public String searchUserList(Model model, @ModelAttribute GetFormUserList getFormUserList) {
-    List<BasicInfomationEntity> searchUserList = basicInfomationMapper.searchBasic(getFormUserList);
-    model.addAttribute("userlist", searchUserList);
-    model.addAttribute("getForm", getFormUserList);
-    return "authoritySupporters/userlist";
   }
 
   @GetMapping("/login")

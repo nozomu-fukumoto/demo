@@ -4,80 +4,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>妊娠中の経過ページ | 母子健康手帳</title>
+  <title>トップページ | 母子健康手帳</title>
   <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"></link>
   <link href="/img/favicon.png" th:href="@{/img/favicon.png}" rel="icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
-  <h1>母子健康手帳　妊娠中の経過</h1>
+  <!-- 以下、ヘッダー部分(ナビゲーションバー)の表示について -->
+  <nav class="navbar navbar-light bg-light p-3">
+    <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+      <a class="navbar-brand" href="./index.html" th:href="@{/}">
+          母子健康手帳アプリケーション Star& 医療関係者用管理画面
+      </a>
+      <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-target="#sidebar" aria-controls="sidebar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+      <div>
+        <a href="./logout.html" class="btn btn-secondary text-white" type="button" th:href="@{/logout}">ログアウト</a> 
+      </div>
+    </div>
+  </nav>
 
-  <div>
-    <a href="./authoritySupporters/userlist.html" th:href="@{/supporter/userlist}">母子健康手帳利用者一覧へ</a>
-  </div>
+  <div class="container-fluid">
+    <div class="row">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+          <!-- 以下、サイドバーの表示について -->
+          <div class="position-sticky pt-md-5">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" th:href="@{/}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                  <span class="ml-2">ホーム</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000"><defs><style>.cls-63ce74b6ea57ea6c8380063f-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><circle class="cls-63ce74b6ea57ea6c8380063f-1" cx="10.09" cy="10.09" r="8.59"></circle><line class="cls-63ce74b6ea57ea6c8380063f-1" x1="22.5" y1="22.5" x2="16.3" y2="16.3"></line><path class="cls-63ce74b6ea57ea6c8380063f-1" d="M7.23,14.86A2.86,2.86,0,0,1,10.09,12h0A2.86,2.86,0,0,1,13,14.86"></path><circle class="cls-63ce74b6ea57ea6c8380063f-1" cx="10.09" cy="8.18" r="1.91"></circle></svg>
+                  <span class="ml-2">利用者情報閲覧</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" th:href="@{/supporter/datamenu}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000"><defs><style>.cls-637b8d40f95e86b59c57a2ff-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><g id="roll_brush" data-name="roll brush"><path class="cls-637b8d40f95e86b59c57a2ff-1" d="M22.52,13a2.35,2.35,0,0,1,0,.26,3.82,3.82,0,0,1-3.83,3.57H16.77V13c0,1-2.15,1.92-4.8,1.92S7.17,14,7.17,13v3.83h-1A4.8,4.8,0,0,1,1.43,12.2a1.41,1.41,0,0,1,0-.2,4.78,4.78,0,0,1,4.8-4.8h0A6.68,6.68,0,0,1,6.8,4.68l.13-.26a5.71,5.71,0,0,1,4.83-3H12A5.75,5.75,0,0,1,17.72,7.2V9.12h1A3.84,3.84,0,0,1,22.52,13Z"></path><ellipse class="cls-637b8d40f95e86b59c57a2ff-1" cx="11.97" cy="12.96" rx="4.8" ry="1.92"></ellipse><path class="cls-637b8d40f95e86b59c57a2ff-1" d="M16.77,13v3.83c0,1.06-2.15,1.92-4.8,1.92s-4.8-.86-4.8-1.92V13c0,1,2.15,1.92,4.8,1.92S16.77,14,16.77,13Z"></path><ellipse class="cls-637b8d40f95e86b59c57a2ff-1" cx="11.97" cy="12.96" rx="4.8" ry="1.92"></ellipse><path class="cls-637b8d40f95e86b59c57a2ff-1" d="M16.77,16.79v3.84a1.27,1.27,0,0,1-.65,1,7.88,7.88,0,0,1-4.15,1,7.88,7.88,0,0,1-4.15-1,1.25,1.25,0,0,1-.65-1V16.79c0,1.06,2.15,1.92,4.8,1.92S16.77,17.85,16.77,16.79Z"></path></g></svg>
+                  <span class="ml-2">データ登録・更新</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+              <li class="breadcrumb-item active" aria-current="page">データ登録・更新</li>
+            </ol>
+          </nav>
+          <h1 class="h5">データ登録・更新</h1>
 
-  <div>
-    <a href="./addCourseOfPregnancy.html" th:href="@{'/supporter/userlist/editablelist/' + ${serial_no} + '/addCourseOfPregnancy'}">新規登録</a>
-  </div>
+          <div>
+            <a href="./authoritySupporters/userlist.html" th:href="@{/supporter/datamenu}">母子健康手帳利用者一覧へ</a>
+          </div>
 
-  <div>
-    <table>
-      <tr>
-        <th>編集ボタン</th>
-        <th>診察日</th>
-        <th>妊娠週数ー日</th>
-        <th>子宮底長</th>
-        <th>腹囲</th>
-        <th>体重</th>
-        <th>血圧</th>
-        <th>浮腫</th>
-        <th>尿蛋白</th>
-        <th>尿糖</th>
-        <th>その他の検査（血液検査、血糖、超音波など）</th>
-        <th>特記事項（安静・休業などの指示や切迫早産等の産科疾患や合併症など）</th>
-        <th>施設名又は担当者名</th>
-      </tr>
-      <tr th:each="course : ${courseList}" th:object="${courseList}">
-        <td><a href="./editCourseOfPregnancy.html" th:href="@{'/supporter/userlist/editablelist/' + ${course.serial_no} + '/updateCourseOfPregnancy'}">編集する</a></td>
-        <td th:text="${#dates.format(course.exam_date, 'yyyy年MM月dd日')}"></td>
-        <td th:text="|${course.week_of_pregnancy_w}ー${course.week_of_pregnancy_d}|"></td>
-        <td th:text="|${course.height_of_uterus}㎝|"></td>
-        <td th:text="|${course.circumference_of_abdomen}㎝|"></td>
-        <td th:text="|${course.weight}㎏|"></td>
-        <td th:text="|${course.blood_pressure_systolic}／${course.blood_pressure_diastolic}|"></td>
-        <td>
-          <th:block th:switch="${course.edema}">
-            <p th:case=0 th:text="'-'"></p>
-            <p th:case=1 th:text="'∓'"></p>
-            <p th:case=2 th:text="'+'"></p>
-            <p th:case=3 th:text="'⧺'"></p>
-            <p th:case=4 th:text="'⧻'"></p>
-          </th:block>
-        </td>
-        <td>
-          <th:block th:switch="${course.protein_in_urine}">
-            <p th:case=0 th:text="'-'"></p>
-            <p th:case=1 th:text="'∓'"></p>
-            <p th:case=2 th:text="'+'"></p>
-            <p th:case=3 th:text="'⧺'"></p>
-            <p th:case=4 th:text="'⧻'"></p>
-          </th:block>
-        </td>
-        <td>
-          <th:block th:switch="${course.sugar_in_urine}">
-            <p th:case=0 th:text="'-'"></p>
-            <p th:case=1 th:text="'∓'"></p>
-            <p th:case=2 th:text="'+'"></p>
-            <p th:case=3 th:text="'⧺'"></p>
-            <p th:case=4 th:text="'⧻'"></p>
-          </th:block>
-        </td>
-        <td th:text="${course.other_examinations}"></td>
-        <td th:text="${course.special_notes}"></td>
-        <td th:text="${course.name_of_medical_institution_or_doctor}"></td>
-      </tr>
-    </table>
-    
+          <div>
+            <a href="./addCourseOfPregnancy.html" th:href="@{'/supporter/datamenu/editablelist/' + ${serial_no} + '/addCourseOfPregnancy'}">新規登録</a>
+          </div>
+        
+          <div>
+            <table>
+              <tr>
+                <th>編集ボタン</th>
+                <th>診察日</th>
+                <th>妊娠週数ー日</th>
+                <th>子宮底長</th>
+                <th>腹囲</th>
+                <th>体重</th>
+                <th>血圧</th>
+                <th>浮腫</th>
+                <th>尿蛋白</th>
+                <th>尿糖</th>
+                <th>その他の検査（血液検査、血糖、超音波など）</th>
+                <th>特記事項（安静・休業などの指示や切迫早産等の産科疾患や合併症など）</th>
+                <th>施設名又は担当者名</th>
+              </tr>
+              <tr th:each="course : ${courseList}" th:object="${courseList}">
+                <td><a href="./editCourseOfPregnancy.html" th:href="@{'/supporter/datamenu/editablelist/' + ${course.serial_no} + '/updateCourseOfPregnancy'}">編集する</a></td>
+                <td th:text="${#dates.format(course.exam_date, 'yyyy年MM月dd日')}"></td>
+                <td th:text="|${course.week_of_pregnancy_w}ー${course.week_of_pregnancy_d}|"></td>
+                <td th:text="|${course.height_of_uterus}㎝|"></td>
+                <td th:text="|${course.circumference_of_abdomen}㎝|"></td>
+                <td th:text="|${course.weight}㎏|"></td>
+                <td th:text="|${course.blood_pressure_systolic}／${course.blood_pressure_diastolic}|"></td>
+                <td>
+                  <th:block th:switch="${course.edema}">
+                    <p th:case=0 th:text="'-'"></p>
+                    <p th:case=1 th:text="'∓'"></p>
+                    <p th:case=2 th:text="'+'"></p>
+                    <p th:case=3 th:text="'⧺'"></p>
+                    <p th:case=4 th:text="'⧻'"></p>
+                  </th:block>
+                </td>
+                <td>
+                  <th:block th:switch="${course.protein_in_urine}">
+                    <p th:case=0 th:text="'-'"></p>
+                    <p th:case=1 th:text="'∓'"></p>
+                    <p th:case=2 th:text="'+'"></p>
+                    <p th:case=3 th:text="'⧺'"></p>
+                    <p th:case=4 th:text="'⧻'"></p>
+                  </th:block>
+                </td>
+                <td>
+                  <th:block th:switch="${course.sugar_in_urine}">
+                    <p th:case=0 th:text="'-'"></p>
+                    <p th:case=1 th:text="'∓'"></p>
+                    <p th:case=2 th:text="'+'"></p>
+                    <p th:case=3 th:text="'⧺'"></p>
+                    <p th:case=4 th:text="'⧻'"></p>
+                  </th:block>
+                </td>
+                <td th:text="${course.other_examinations}"></td>
+                <td th:text="${course.special_notes}"></td>
+                <td th:text="${course.name_of_medical_institution_or_doctor}"></td>
+              </tr>
+            </table>
+            
+          </div>
+        
+        </main>
+        
+    </div>
   </div>
 
 </body>
