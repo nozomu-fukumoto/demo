@@ -64,14 +64,14 @@ public class AuthoritySupportersController {
     List<CourseOfPregnancyEntity> courseList = courseOfPregnancyMapper.selectCourse(serial_no);
     model.addAttribute("courseList", courseList);
     model.addAttribute("serial_no", serial_no);
-    return "/authoritySupporters/courseOfPregnancySup";
+    return "authoritySupporters/courseOfPregnancySup";
   }
 
   @GetMapping("/supporter/datamenu/editablelist/{serial_no}/addCourseOfPregnancy")
   public String showAddCoursePage(Model model, @PathVariable long serial_no) {
     model.addAttribute("serial_no", serial_no);
     model.addAttribute("infoMessage", "初期処理完了");
-    return "/authoritySupporters/addCourseOfPregnancy";
+    return "authoritySupporters/addCourseOfPregnancy";
   }
   
   @RequestMapping("/supporter/datamenu/editablelist/courseOfPregnancy/add")
@@ -94,7 +94,7 @@ public class AuthoritySupportersController {
     List<CourseOfPregnancyEntity> editCourseList = courseOfPregnancyMapper.selectCourseForEdit(id);
     model.addAttribute("editCourseList", editCourseList);
     model.addAttribute("infoMessage", "初期処理完了");
-    return "/authoritySupporters/editCourseOfPregnancy";
+    return "authoritySupporters/editCourseOfPregnancy";
   }
 
   @RequestMapping("/supporter/datamenu/editablelist/courseOfPregnancy/update")
