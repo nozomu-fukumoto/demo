@@ -11,6 +11,14 @@
     WHERE
       serial_no = #{serial_no}   
   </select>
+  <select id="selectCourseForEdit" resultType="com.myintern.demo.entity.CourseOfPregnancyEntity">
+    SELECT
+      *
+    FROM
+      course_of_pregnancy
+    WHERE
+      id = #{id}
+  </select>
   <insert id="addCourse" parameterType="com.myintern.demo.entity.CourseOfPregnancyEntity">
     INSERT INTO course_of_pregnancy(
         serial_no,

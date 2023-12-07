@@ -89,9 +89,9 @@ public class AuthoritySupportersController {
     return "redirect:/supporter/datamenu/editablelist/" + serial_no + "/courseOfPregnancy";
   }
 
-  @GetMapping("/supporter/datamenu/editablelist/{serial_no}/updateCourseOfPregnancy")
-  public String showUpdateCoursePage(Model model, @PathVariable long serial_no) {
-    List<CourseOfPregnancyEntity> editCourseList = courseOfPregnancyMapper.selectCourse(serial_no);
+  @GetMapping("/supporter/datamenu/editablelist/{serial_no}/updateCourseOfPregnancy/{id}")
+  public String showUpdateCoursePage(Model model, @PathVariable long serial_no, @PathVariable long id) {
+    List<CourseOfPregnancyEntity> editCourseList = courseOfPregnancyMapper.selectCourseForEdit(id);
     model.addAttribute("editCourseList", editCourseList);
     model.addAttribute("infoMessage", "初期処理完了");
     return "/authoritySupporters/editCourseOfPregnancy";

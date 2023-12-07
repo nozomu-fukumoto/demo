@@ -12,6 +12,8 @@ public interface CourseOfPregnancyMapper {
   
   public List<CourseOfPregnancyEntity> selectCourse(@Param("serial_no") long serial_no);
 
+  public List<CourseOfPregnancyEntity> selectCourseForEdit(@Param("id") long id);
+
   public void addCourse(CourseOfPregnancyEntity courseOfPregnancyEntity);
 
   public void updateCourse(CourseOfPregnancyEntity courseOfPregnancyEntity);
