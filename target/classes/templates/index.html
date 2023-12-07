@@ -111,7 +111,7 @@
   <div sec:authorize="hasRole('ROLE_SUPPORTER')">
 
     <!-- 以下、ヘッダー部分(ナビゲーションバー)の表示について -->
-    <nav class="navbar navbar-light bg-light p-3">
+    <nav class="navbar navbar-light bg-light p-3 fixed-top">
       <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
         <a class="navbar-brand" href="./index.html" th:href="@{/}">
             母子健康手帳アプリケーション Star& 医療関係者用管理画面
@@ -131,7 +131,7 @@
       <div class="row">
           <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
               <!-- 以下、サイドバーの表示について -->
-              <div class="position-sticky pt-md-5">
+              <div class="position-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" th:href="@{/}">
@@ -149,7 +149,7 @@
               </div>
           </nav>
           
-          <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+          <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 custom-padding-top">
             <div class="col-12 my-1">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">

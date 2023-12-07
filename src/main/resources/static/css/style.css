@@ -18,6 +18,10 @@
   z-index: 99;
 }
 
+.custom-padding-top {
+  padding-top: 90px;
+}
+
 @media (max-width: 767.98px) {
   .sidebar {
     top: 11.5rem;

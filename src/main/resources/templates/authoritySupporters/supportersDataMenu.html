@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>トップページ | 母子健康手帳</title>
+  <title>データ登録・更新メニュー | 母子健康手帳</title>
   <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"></link>
   <link href="/img/favicon.png" th:href="@{/img/favicon.png}" rel="icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -13,7 +13,7 @@
 <body>
 
   <!-- 以下、ヘッダー部分(ナビゲーションバー)の表示について -->
-  <nav class="navbar navbar-light bg-light p-3">
+  <nav class="navbar navbar-light bg-light p-3 fixed-top">
     <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
       <a class="navbar-brand" href="./index.html" th:href="@{/}">
           母子健康手帳アプリケーション Star& 医療関係者用管理画面
@@ -33,7 +33,7 @@
     <div class="row">
         <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
           <!-- 以下、サイドバーの表示について -->
-          <div class="position-sticky pt-md-5">
+          <div class="position-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" th:href="@{/}">
@@ -51,7 +51,7 @@
           </div>
         </nav>
         
-        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 custom-padding-top">
           <div class="col-12 my-1">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
@@ -77,18 +77,18 @@
                     <table class="table">
                       <thead>
                         <tr>
+                          <th scope="col"></th>
                           <th scope="col">利用者番号</th>
                           <th scope="col">利用者氏名</th>
                           <th scope="col">手帳交付日</th>
-                          <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr th:each="user : ${userlist}">
+                          <td><a href="./editablelistpage.html" th:href="@{'/supporter/datamenu/editablelist/' + ${user.serial_no}}"  class="btn btn-sm btn-primary" th:value="${user.serial_no}">編集する</a></td>
                           <td th:text="${user.serial_no}"></td>
                           <td th:text="${user.guardian_name}"></td>
-                          <td th:text="${user.issue_date_ymd}"></td>
-                          <td><a href="./editablelistpage.html" th:href="@{'/supporter/datamenu/editablelist/' + ${user.serial_no}}"  class="btn btn-sm btn-primary" th:value="${user.serial_no}">編集する</a></td>
+                          <td th:text="|${#dates.format(user.issue_date_ymd, 'yyyy年MM月dd日')}発行|"></td>
                         </tr>
                       </tbody>
                     </table>
