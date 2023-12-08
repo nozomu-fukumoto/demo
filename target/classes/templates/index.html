@@ -51,10 +51,10 @@
           <div th:each="basic : ${basicInfomation}" th:object="${basic}">
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
-                <p class="text-center" th:text="|${#dates.format(basic.issue_date_ymd, 'yyyy年MM月dd日')}発行|"></p>
+                <p class="m-2 text-center" th:text="|${#dates.format(basic.issue_date_ymd, 'yyyy年MM月dd日')}発行|"></p>
               </li>
               <li class="list-group-item">
-                <p class="text-center" th:text="|利用者No.${basic.serial_no}|"></p>
+                <p class="m-2 text-center" th:text="|利用者No.${basic.serial_no}|"></p>
               </li>
             </ul>
           </div>
@@ -64,10 +64,10 @@
           <div th:each="basic : ${basicInfomation}" th:object="${basic}">
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
-                <p class="text-center" th:text="|${basic.guardian_name_kana}|"></p>
+                <p class="m-2 text-center" th:text="|${basic.guardian_name_kana}|"></p>
               </li>
               <li class="list-group-item">
-                <p class="text-center" th:text="|${basic.guardian_name}|"></p>
+                <p class="m-2 text-center" th:text="|${basic.guardian_name}|"></p>
               </li>
             </ul>
           </div>
@@ -77,22 +77,22 @@
           <div th:each="basic : ${basicInfomation}" th:object="${basic}">
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
-                <p class="text-center" th:text="|${basic.child_name_kana}|"></p>
+                <p class="m-2 text-center" th:text="|${basic.child_name_kana}|"></p>
               </li>
               <li class="list-group-item">
-                <p class="text-center" th:text="|${basic.child_name}|"></p>
+                <p class="m-2 text-center" th:text="|${basic.child_name}|"></p>
               </li>
               <li class="list-group-item">
-                <p class="text-center" th:text="${#dates.format(basic.birthdate_ymd, 'yyyy年MM月dd日生')}"></p>
+                <p class="m-2 text-center" th:text="${#dates.format(basic.birthdate_ymd, 'yyyy年MM月dd日生')}"></p>
               </li>
               <li class="list-group-item">
-                <p class="text-center" th:text="|第 ${basic.order_of_birth} 子|"></p>
+                <p class="m-2 text-center" th:text="|第 ${basic.order_of_birth} 子|"></p>
               </li>
               <li class="list-group-item">
                 <th:block th:switch="${basic.sex}">
-                  <p class="text-center" th:case=1 th:text="男性"></p>
-                  <p class="text-center" th:case=2 th:text="女性"></p>
-                  <p class="text-center" th:case=3 th:text="未回答"></p>
+                  <p class="m-2 text-center" th:case=1 th:text="男性"></p>
+                  <p class="m-2 text-center" th:case=2 th:text="女性"></p>
+                  <p class="m-2 text-center" th:case=3 th:text="未回答"></p>
                 </th:block>
               </li>
             </ul>
