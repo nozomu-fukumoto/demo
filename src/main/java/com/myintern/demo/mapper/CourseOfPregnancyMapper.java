@@ -1,5 +1,6 @@
 package com.myintern.demo.mapper;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -11,6 +12,8 @@ import com.myintern.demo.entity.CourseOfPregnancyEntity;
 public interface CourseOfPregnancyMapper {
   
   public List<CourseOfPregnancyEntity> selectCourse(@Param("serial_no") long serial_no);
+  public List<CourseOfPregnancyEntity> selectCourseExamDate(@Param("serial_no") long serial_no);
+  public List<CourseOfPregnancyEntity> selectCourseByExamDate(@Param("exam_date") Date exam_date);
 
   public List<CourseOfPregnancyEntity> selectCourseForEdit(@Param("id") long id);
 

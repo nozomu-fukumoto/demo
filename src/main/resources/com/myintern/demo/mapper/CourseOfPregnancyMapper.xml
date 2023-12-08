@@ -11,6 +11,22 @@
     WHERE
       serial_no = #{serial_no}   
   </select>
+  <select id="selectCourseExamDate" resultType="com.myintern.demo.entity.CourseOfPregnancyEntity">
+    SELECT
+      exam_date
+    FROM
+      course_of_pregnancy
+    WHERE
+      serial_no = #{serial_no}   
+  </select>
+  <select id="selectCourseByExamDate" resultType="com.myintern.demo.entity.CourseOfPregnancyEntity">
+    SELECT
+      *
+    FROM
+      course_of_pregnancy
+    WHERE
+      exam_date = #{exam_date}
+  </select>
   <select id="selectCourseForEdit" resultType="com.myintern.demo.entity.CourseOfPregnancyEntity">
     SELECT
       *

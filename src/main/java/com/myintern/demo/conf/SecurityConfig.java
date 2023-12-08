@@ -28,6 +28,7 @@ public class SecurityConfig {
           .permitAll()
           .requestMatchers("/supporter/**").hasRole("SUPPORTER")
           .requestMatchers("/officer/**").hasRole("OFFICER")
+          .requestMatchers("/img/**").permitAll() // 静的リソースに対するアクセスを許可
           .anyRequest().authenticated()
     );
     return http.build();

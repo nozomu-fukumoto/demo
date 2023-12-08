@@ -1,5 +1,6 @@
 package com.myintern.demo.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.myintern.demo.entity.PregnancyHealthReferenceEntity;
+import com.myintern.demo.entity.CourseOfPregnancyEntity;
+import com.myintern.demo.mapper.CourseOfPregnancyMapper;
 import com.myintern.demo.mapper.PregnancyHealthReferenceMapper;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +21,8 @@ public class AuthorityUsersController {
   
   @Autowired
   PregnancyHealthReferenceMapper pregnancyHealthReferenceMapper;
+  @Autowired
+  CourseOfPregnancyMapper courseOfPregnancyMapper;
 
   @GetMapping(value= "/mypage/{serial_no}/authorityUsers/pregnancyHealthReference")
   public String showHealthPage(Model model, @PathVariable long serial_no) {
@@ -54,4 +59,19 @@ public class AuthorityUsersController {
     return "redirect:/mypage/" + serial_no + "/authorityUsers/pregnancyHealthReference";
   }  
 
+  @GetMapping(value= "/mypage/{serial_no}/authorityUsers/courseOfPregnancyPre")
+  public String showCoursePrePage(Model model, @PathVariable long serial_no) {
+    List<CourseOfPregnancyEntity> courseDateList = courseOfPregnancyMapper.selectCourseExamDate(serial_no);
+    model.addAttribute("courseDateList", courseDateList);
+    model.addAttribute("serial_no", serial_no);
+    return "authorityUsers/courseOfPregnancyPre";
+  }
+
+  @GetMapping(value= "/mypage/{serial_no}/authorityUsers/courseOfPregnancy/{exam_date}")
+  public String showCoursePage(Model model, @PathVariable long serial_no, @PathVariable Date exam_date) {
+    List<CourseOfPregnancyEntity> courseList = courseOfPregnancyMapper.selectCourseByExamDate(exam_date);
+    model.addAttribute("courseList", courseList);
+    model.addAttribute("serial_no", serial_no);
+    return "authorityUsers/courseOfPregnancy";
+  }
 }
