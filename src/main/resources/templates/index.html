@@ -1,129 +1,180 @@
-<!-- https://code-step.com/portfolio1-p2/ -->
-<!-- https://code-step.com/demo/html/portfolio1/# -->
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <title>トップページ｜ポートフォリオサイト【福元望】</title>
-    <meta name="description" content="LP練習" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="img/favicon.ico" />
-    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
-  </head>
-  <body>
-    <!-- ヘッダー -->
-    <header id="header">
-      <h1 class="site-title">
-        <a th:href="@{/}">
-         NF
-        </a>
-      </h1>
-      <nav>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#works">Works</a></li>
-          <li><a href="#history">History</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li>
-            <a class="header-logo-invertocat" href="https://github.com/nozomu-fukumoto" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
-              <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
-            </a>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>トップページ | 母子健康手帳</title>
+  <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"></link>
+  <link href="/img/favicon.png" th:href="@{/img/favicon.png}" rel="icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+</head>
+<body>
+  <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-light bg-light" sec:authorize="hasRole('ROLE_USER')">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html" th:href="@{/}">
+        <img th:src="@{/img/logo_transparent.png}" alt="logo" width="150">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav me-auto mb-2">
+          <li class="nav-item border-bottom py-2">
+            <a href="./logout.html" class="btn btn-info text-white" th:href="@{/logout}">ログアウト</a>
+          </li>
+          <li class="nav-item border-bottom py-2">
+            <a class="nav-link active" aria-current="page"  href="../index.html" th:href="@{/}">トップページへ</a>
           </li>
         </ul>
-      </nav>
-    </header>
-
-    <main>
-      <!-- メインビジュアル -->
-      <div id="mainvisual">
-        <picture>
-          <source media="(max-width: 600px)" srcset="img/sakurajima.jpg">
-          <img src="img/sakurajima.jpg" alt="テキストテキストテキスト">
-        </picture>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- 利用者情報表示フォーム-->
+  <section id="list" sec:authorize="hasRole('ROLE_USER')">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto text-center">
+          <h6 class="text-body my-2">母子健康手帳　トップページ</h6>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container" th:each="basic : ${basicInfomation}" th:object="${basic}">
+      <div class="row">
+        <div class="col-md-4 text-center mx-auto">
+          <h4 class="d-inline-block py-3 border-bottom border-info">お手帳情報</h4>
+          <div th:each="basic : ${basicInfomation}" th:object="${basic}">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <p class="m-2 text-center" th:text="|${#dates.format(basic.issue_date_ymd, 'yyyy年MM月dd日')}発行|"></p>
+              </li>
+              <li class="list-group-item">
+                <p class="m-2 text-center" th:text="|利用者No.${basic.serial_no}|"></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 text-center mx-auto">
+          <h4 class="d-inline-block py-3 border-bottom border-info">お母さまのプロフィール</h4>
+          <div th:each="basic : ${basicInfomation}" th:object="${basic}">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <p class="m-2 text-center" th:text="|${basic.guardian_name_kana}|"></p>
+              </li>
+              <li class="list-group-item">
+                <p class="m-2 text-center" th:text="|${basic.guardian_name}|"></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 text-center mx-auto">
+          <h4 class="d-inline-block py-3 border-bottom border-info">お子さまのプロフィール</h4>
+          <div th:each="basic : ${basicInfomation}" th:object="${basic}">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <p class="m-2 text-center" th:text="|${basic.child_name_kana}|"></p>
+              </li>
+              <li class="list-group-item">
+                <p class="m-2 text-center" th:text="|${basic.child_name}|"></p>
+              </li>
+              <li class="list-group-item">
+                <p class="m-2 text-center" th:text="${#dates.format(basic.birthdate_ymd, 'yyyy年MM月dd日生')}"></p>
+              </li>
+              <li class="list-group-item">
+                <p class="m-2 text-center" th:text="|第 ${basic.order_of_birth} 子|"></p>
+              </li>
+              <li class="list-group-item">
+                <th:block th:switch="${basic.sex}">
+                  <p class="m-2 text-center" th:case=1 th:text="男性"></p>
+                  <p class="m-2 text-center" th:case=2 th:text="女性"></p>
+                  <p class="m-2 text-center" th:case=3 th:text="未回答"></p>
+                </th:block>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <!-- About -->
-      <section id="about" class="wrapper">
-        <h2 class="sec-title">About</h2>
-        <h3 class="sub-title">～このポートフォリオサイトについて～</h3>
-        <ul>
-          <li>福元望（ふくもとのぞむ）と申します。</li>
-          <li>就労移行支援事業所に通いながら制作した成果物をまとめたポートフォリオサイトになります。</li>
-          <li>以下、ご覧いただけると幸いです。</li>
-        </ul>
-      </section>
-      <!-- Works -->
-      <section id="works" class="wrapper">
-        <h2 class="sec-title">Works</h2>
-        <h3 class="sub-title">～事業所での成果物について～</h3>
-        <ul>
-          <li>
-            <a th:href="@{/works01}">
-              <img src="./img/works1.jpg" alt="work1">
-            </a>
-            <p>社員管理アプリ</p>
-          </li>
-          <li>
-            <img src="./img/works2.jpg" alt="work2">
-            <p>母子健康手帳アプリ</p>
-          </li>
-          <li>
-            <img src="./img/works3.jpg" alt="work3">
-            <p>Figmaデザイン作成</p>
-          </li>
-        </ul>
-      </section>
-      <!-- History -->
-      <section id="history" class="wrapper">
-        <h2 class="sec-title">History</h2>
-        <h3 class="sub-title">～事業所での主な活動について～</h3>
-        <dl>
-          <dt>2023/07</dt>
-          <dd>事業所の文献を活用しExcelの自主学習を行う。結果、VBAエキスパートを取得</dd>
-          <dt>2023/08</dt>
-          <dd>プログラミング講座課題にて、社員管理のアプリケーションを作成</dd>
-          <dt>2023/09</dt>
-          <dd>Webデザイン講座課題にて、和菓子屋のWebページデザインを作成</dd>
-          <dt>2023/10</dt>
-          <dd>事業所イベントの実行委員を行う</dd>
-          <dt>2023/11</dt>
-          <dd>インターンにて「母子健康手帳」アプリケーションを作成し公開</dd>
-        </dl>
-      </section>
-      <!-- Contact -->
-      <section id="contact" class="wrapper">
-        <h2 class="sec-title">Contact</h2>
-        <h3 class="sub-title">お問い合わせは以下のフォームから</h3>        
-        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfHpe8uZ3mG26XlYVK0nC7J_D1q_ISAZlFyc813PaTm6e-6_w/formResponse" method="post" target="hidden_iframe" onsubmit="submitted=true;">
-          <dl>
-            <dt><label for="name">お名前</label></dt>
-            <dd><input type="text" id="name" name="entry.2005620554"></dd>
-            <dt><label for="email">メールアドレス</label></dt>
-            <dd><input type="email" id="email" name="entry.1045644301"></dd>
-            <dt><label for="subject">件名</label></dt>
-            <dd><input type="text" id="subject" name="entry.1065046570"></dd>
-            <dt><label for="name">メッセージ</label></dt>
-            <dd><textarea id="content" name="entry.839337160" cols="30" rows="10"></textarea></dd>
-          </dl>
-          <div class="button"><input type="submit" value="送信"></div>
-        </form>
-      </section>
+      <div class="text-center mx-auto my-2">
+        <a href="./mypage.html" th:href="@{/mypage/{serial_no}(serial_no=*{serial_no})}" th:value="${basic.serial_no}" class="btn btn-info text-white">マイページへ</a>
+      </div>
 
-      <!-- Footer -->
-      <footer id="footer"></footer>
+    </div>
+  </section>
 
-    </main>
-  
-    <script type="text/javascript">
-      let submitted = false;
-    </script>
-    <iframe
-      name="hidden_iframe"
-      id="hidden_iframe"
-      style="display: none"
-      onload="if(submitted){window.location='https://my-portfolio-45e9.onrender.com/thanks';}">
-    </iframe>
-  </body>
+  <!-- 管理者権限の場合に表示するトップページ -->
+  <div sec:authorize="hasRole('ROLE_SUPPORTER')">
+
+    <!-- 以下、ヘッダー部分(ナビゲーションバー)の表示について -->
+    <nav class="navbar navbar-light bg-light p-3 fixed-top">
+      <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+        <a class="navbar-brand" href="./index.html" th:href="@{/}">
+            母子健康手帳アプリケーション Star& 医療関係者用管理画面
+        </a>
+        <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-target="#sidebar" aria-controls="sidebar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+        <div>
+          <a href="./logout.html" class="btn btn-secondary text-white" type="button" th:href="@{/logout}">ログアウト</a> 
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+          <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+              <!-- 以下、サイドバーの表示について -->
+              <div class="position-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" th:href="@{/}">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        <span class="ml-2">ホーム</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" th:href="@{/supporter/datamenu}">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <span class="ml-2">データ登録・更新</span>
+                      </a>
+                    </li>
+                  </ul>
+              </div>
+          </nav>
+          
+          <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 custom-padding-top">
+            <div class="col-12 my-1">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+                </ol>
+              </nav>
+              <p>あなたは支援者としてログインしております。</p>
+            </div>
+          </main>
+          
+      </div>
+    </div>
+
+  </div>
+
+  <div sec:authorize="hasRole('ROLE_OFFICER')">
+    <p>あなたは役所職員としてログインしております。</p>
+    <div>
+      <!-- 以下はリンクorボタンで、手続き画面へ遷移させる -->
+      <p>母子健康手帳利用開始手続きへ</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+</body>
 </html>
